@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lucas Marques Leme — Currículo</title>
+<style>
+  :root {
+    --bg: #eef1f4;
+    --paper: #ffffff;
+    --side: #f5f7f9;
+    --text: #1b2430;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --accent: #0f766e;
+    --accent-soft: #e6f4f2;
+    --chip: #ffffff;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1014;
+    --paper: #151b22;
+    --side: #1a222b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --line: #2a3541;
+    --accent: #5eead4;
+    --accent-soft: #15302d;
+    --chip: #1f2933;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c1014;
+      --paper: #151b22;
+      --side: #1a222b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --line: #2a3541;
+      --accent: #5eead4;
+      --accent-soft: #15302d;
+      --chip: #1f2933;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    padding: 32px 16px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .toolbar {
+    max-width: 960px;
+    margin: 0 auto 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  button {
+    font: inherit;
+    font-size: 13px;
+    color: var(--text);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 7px 14px;
+    cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--paper);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  header.hero {
+    padding: 40px 44px 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+  }
+  .hero .role { font-size: 1.05rem; color: var(--muted); margin: 0 0 18px; }
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .contact a { color: inherit; text-decoration: none; }
+  .contact a:hover { color: var(--accent); }
+  .copy {
+    font-size: 11px;
+    padding: 1px 8px;
+    margin-left: 4px;
+    border-radius: 999px;
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+  }
+
+  aside {
+    background: var(--side);
+    padding: 32px 26px;
+    border-right: 1px solid var(--line);
+  }
+  main.content { padding: 32px 40px; }
+
+  h2.label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 16px;
+  }
+  h2.label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+  section + section { margin-top: 36px; }
+  aside section + section { margin-top: 30px; }
+
+  .entry { margin-bottom: 18px; }
+  .entry h3 { font-size: 14px; margin: 0; line-height: 1.35; }
+  .entry .org { font-size: 13px; color: var(--muted); margin: 2px 0 0; }
+  .entry .when { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
+
+  .summary p { margin: 0; font-size: 15px; }
+
+  .timeline { position: relative; padding-left: 22px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--line);
+  }
+  .job { position: relative; margin-bottom: 26px; }
+  .job::before {
+    content: "";
+    position: absolute;
+    left: -22px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--accent);
+  }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .job h3 { font-size: 16px; margin: 0; }
+  .job .org { color: var(--accent); font-size: 14px; margin: 2px 0 0; font-weight: 600; }
+  .job .when { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .job ul { margin: 10px 0 0; padding-left: 18px; }
+  .job li { margin-bottom: 5px; font-size: 14px; }
+  .toggle {
+    margin-top: 10px;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .details[hidden] { display: none; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    background: var(--chip);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+  }
+  .sub {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 14px 0 8px;
+  }
+  .sub:first-of-type { margin-top: 0; }
+
+  footer {
+    padding: 16px 40px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .body { grid-template-columns: 1fr; }
+    aside { border-right: none; border-bottom: 1px solid var(--line); }
+    main.content, header.hero, footer { padding-left: 24px; padding-right: 24px; }
+    .hero h1 { font-size: 2rem; }
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .toolbar { display: none; }
+    .page { box-shadow: none; border-radius: 0; }
+    .toggle, .copy { display: none; }
+    .details { display: block !important; }
+    .chip { background: none; }
+    section, .job { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button id="theme" type="button">Modo escuro</button>
+  <button id="export" type="button">Exportar PDF</button>
+</div>
+
+<div class="page">
+
+  <header class="hero">
+    <p class="kicker">Currículo profissional</p>
+    <h1>Lucas Marques Leme</h1>
+    <p class="role">Estagiário de CRM — BMW Group</p>
+    <div class="contact">
+      <span>(11) 91341-1080 <button class="copy" type="button" data-copy="(11) 91341-1080">copiar</button></span>
+      <span><a href="mailto:lucasml2990@gmail.com">lucasml2990@gmail.com</a> <button class="copy" type="button" data-copy="lucasml2990@gmail.com">copiar</button></span>
+      <a href="https://linkedin.com/in/lucas-marques-leme" target="_blank" rel="noopener">linkedin.com/in/lucas-marques-leme</a>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <aside>
+      <section>
+        <h2 class="label">Formação</h2>
+        <div class="entry">
+          <h3>Bacharelado em Ciência de Dados</h3>
+          <p class="org">Universidade Federal do ABC</p>
+          <p class="when">Previsão: 12/2028</p>
+        </div>
+        <div class="entry">
+          <h3>Bacharelado em Ciência e Tecnologia</h3>
+          <p class="org">Universidade Federal do ABC</p>
+          <p class="when">Previsão: 12/2027</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="label">Certificados</h2>
+        <div class="entry"><h3>SQL</h3><p class="org">Udemy · Dez. 2024</p></div>
+        <div class="entry"><h3>Excel Completo: do Básico ao Avançado</h3><p class="org">Udemy · Out. 2024</p></div>
+        <div class="entry"><h3>Python</h3><p class="org">FATEC Jundiaí · Out. 2024</p></div>
+        <div class="entry"><h3>Mercado Financeiro de A a Z</h3><p class="org">ANBIMA · Out. 2024</p></div>
+        <div class="entry"><h3>Introdução à Análise de Dados com Power BI</h3><p class="org">Fundação Bradesco · Set. 2024</p></div>
+      </section>
+
+      <section>
+        <h2 class="label">Competências</h2>
+        <p class="sub">Técnicas</p>
+        <div class="chips">
+          <span class="chip">Excel avançado (macros)</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">Tableau</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Python avançado</span>
+          <span class="chip">Databricks</span>
+          <span class="chip">Alteryx</span>
+          <span class="chip">VS Code</span>
+          <span class="chip">Análise de Dados</span>
+          <span class="chip">Banco de Dados</span>
+          <span class="chip">Construção de Dashboards</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">Inteligência Artificial (uso aplicado)</span>
+          <span class="chip">Lógica de Programação</span>
+          <span class="chip">Estatística</span>
+        </div>
+        <p class="sub">Complementares</p>
+        <div class="chips">
+          <span class="chip">Gestão operacional</span>
+          <span class="chip">Relatórios e dashboards</span>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="label">Idiomas</h2>
+        <div class="entry"><h3>Inglês</h3><p class="org">Intermediário</p></div>
+      </section>
+    </aside>
+
+    <main class="content">
+
+      <section class="summary">
+        <h2 class="label">Resumo profissional</h2>
+        <p>Sou estudante de Ciência de Dados e de Ciência e Tecnologia na UFABC e trabalho com dados, indicadores e geração de relatórios. Atualmente, atuo em CRM na BMW Group, onde acompanho leads, vendas e eventos da BMW Motorrad, analiso o chat com IA de atendimento para aumentar a conversão e produzo relatórios mensais, trimestrais e anuais. Na B3 S.A., atuei em Modelagem de Tarifação, com gestão e cobrança de programas de incentivo (HFT e Formador de Mercado), automatização da cobrança, migração de fluxos do Alteryx para o Databricks e criação dos primeiros dashboards da área. Também automatizo a geração de apresentações em PowerPoint com IA e Python. Tenho domínio em Excel (macros), SQL, Python, Power BI e Tableau.</p>
+      </section>
+
+      <section>
+        <h2 class="label">Experiência profissional</h2>
+        <div class="timeline">
+
+          <div class="job">
+            <div class="job-head">
+              <h3>Estagiário de CRM</h3>
+              <span class="when">06/2026 – Atual</span>
+            </div>
+            <p class="org">BMW Group</p>
+            <div class="details">
+              <ul>
+                <li>Acompanhamento de leads, vendas e eventos da linha BMW Motorrad, com foco na evolução dos indicadores do funil comercial.</li>
+                <li>Análise do desempenho do chat com IA de atendimento, identificando gargalos no processo e oportunidades para aumentar a conversão de vendas.</li>
+                <li>Elaboração de relatórios de resultados mensais, trimestrais e anuais, incluindo análises de eventos e suporte à tomada de decisão.</li>
+                <li>Automatização da geração de apresentações em PowerPoint com IA e Python, reduzindo o trabalho manual na elaboração dos relatórios.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="job">
+            <div class="job-head">
+              <h3>Estagiário em Modelagem de Tarifação de Produtos Listados</h3>
+              <span class="when">04/2025 – 04/2026</span>
+            </div>
+            <p class="org">B3 S.A. – Brasil, Bolsa, Balcão</p>
+            <div class="details">
+              <ul>
+                <li>Gestão operacional e de cobrança dos programas HFT, Trade Mate, Formador de Mercado (Bitcoin e À Vista) e Box 3 Pontas, com análise de investidores, verificação de conformidade de critérios e atendimento a chamados.</li>
+                <li>Automatização da cobrança de todos os programas de incentivo da B3 S.A., reduzindo o processamento manual e aumentando a consistência dos resultados.</li>
+                <li>Liderança da migração de fluxos manuais do Alteryx para o Databricks, automatizando processos da área.</li>
+                <li>Criação dos primeiros dashboards da área de Tarifação, voltados ao acompanhamento do programa HFT pelo time de Relacionamento.</li>
+                <li>Participação na nova NTE, já implementada.</li>
+                <li>Acompanhamento do mercado de euro/dólar.</li>
+                <li>Participação na criação de pacotes para clientes HFT, ainda não implementados.</li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="job">
+            <div class="job-head">
+              <h3>Vendedor</h3>
+              <span class="when">01/2024 – 10/2024</span>
+            </div>
+            <p class="org">Art In Case</p>
+            <button class="toggle" type="button">Ver detalhes</button>
+            <div class="details" hidden>
+              <ul>
+                <li>Prospecção e atendimento de clientes, apresentação de produtos e negociação até o fechamento da venda.</li>
+                <li>Acompanhamento de metas de vendas e do pós-venda.</li>
+                <li>Registro das informações de clientes e do andamento das negociações.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <span>Lucas Marques Leme</span>
+    <span>Currículo atualizado em outubro de 2026</span>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var themeBtn = document.getElementById('theme');
+    var exportBtn = document.getElementById('export');
+
+    function isDark() {
+      var explicit = root.getAttribute('data-theme');
+      if (explicit) return explicit === 'dark';
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    function syncLabel() {
+      themeBtn.textContent = isDark() ? 'Modo claro' : 'Modo escuro';
+    }
+    themeBtn.addEventListener('click', function () {
+      root.setAttribute('data-theme', isDark() ? 'light' : 'dark');
+      syncLabel();
+    });
+    document.querySelectorAll('.copy').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (navigator.clipboard) navigator.clipboard.writeText(b.getAttribute('data-copy'));
+        b.textContent = 'copiado';
+      });
+    });
+    document.querySelectorAll('.toggle').forEach(function (t) {
+      t.addEventListener('click', function () {
+        var d = t.nextElementSibling;
+        d.hidden = !d.hidden;
+        t.textContent = d.hidden ? 'Ver detalhes' : 'Recolher';
+      });
+    });
+    exportBtn.addEventListener('click', function () {
+      window.print();
+    });
+    syncLabel();
+  })();
+</script>
+
+</body>
+</html>
