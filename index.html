@@ -232,9 +232,31 @@
   }
 
   @media print {
+    :root:root {
+      --bg: #ffffff;
+      --paper: #ffffff;
+      --side: #ffffff;
+      --text: #1b2430;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --accent: #0f766e;
+      --accent-soft: #e6f4f2;
+      --chip: #ffffff;
+    }
     body { background: #fff; padding: 0; }
     .toolbar { display: none; }
-    .page { box-shadow: none; border-radius: 0; }
+    .page { max-width: none; box-shadow: none; border-radius: 0; }
+    header.hero { padding: 32px 32px 24px; }
+    .body { display: flex; flex-direction: column; }
+    main.content { order: 1; padding: 24px 32px; }
+    aside {
+      order: 2;
+      background: #fff;
+      border-right: none;
+      border-top: 1px solid var(--line);
+      padding: 24px 32px;
+    }
+    footer { padding: 14px 32px; }
     .toggle, .copy { display: none; }
     .details { display: block !important; }
     .chip { background: none; }
