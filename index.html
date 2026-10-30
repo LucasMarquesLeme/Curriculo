@@ -248,14 +248,17 @@
     .page { max-width: none; box-shadow: none; border-radius: 0; }
     header.hero { padding: 32px 32px 24px; }
     .body { display: flex; flex-direction: column; }
-    main.content { order: 1; padding: 24px 32px; }
-    aside {
-      order: 2;
-      background: #fff;
-      border-right: none;
-      border-top: 1px solid var(--line);
-      padding: 24px 32px;
-    }
+    aside, main.content { display: contents; }
+    main.content > section.summary { order: 1; }
+    aside > section:first-of-type { order: 2; }
+    main.content > section:not(.summary) { order: 3; }
+    aside > section:not(:first-of-type) { order: 4; }
+    aside > section { margin-top: 0; }
+    main.content > section { padding: 0 32px; }
+    main.content > section.summary { padding-top: 24px; }
+    main.content > section + section { margin-top: 28px; }
+    aside > section { padding: 0 32px; }
+    aside > section + section { margin-top: 28px; }
     footer { padding: 14px 32px; }
     .toggle, .copy { display: none; }
     .details { display: block !important; }
